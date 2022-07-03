@@ -1,6 +1,9 @@
 *.csv
 *.zip
 .ipynb_checkpoints/
+*.tar.gz
+output/
+data/
 kaggle/
 *.pptx
 

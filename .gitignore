@@ -7,3 +7,4 @@ data/
 kaggle/
 *.pptx
 *.txt
+*.pickle

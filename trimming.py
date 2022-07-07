@@ -2,7 +2,8 @@ import pandas as pd
 from tqdm import tqdm
 from datetime import datetime
 
-
+# The length of time in milliseconds after 1970-01-01T00:00:00.000 UTC that
+# the first pixel was placed in r/Place 2022.
 START_TIME = 1648806250315
 
 
@@ -24,9 +25,8 @@ def parse_timestamp(timestamp):
     # The earliest timestamp is 1648806250315, so subtract that from each timestamp
     # to get the time in milliseconds since the beginning of the experiment.
     timestamp -= START_TIME
-
+    
     return timestamp
-
 
 
 def parse_pixel_color(pixel_color):
@@ -69,7 +69,6 @@ def parse_pixel_color(pixel_color):
     return hex_to_key[pixel_color]
 
 
-
 def split_coords_single_points(points):
     """
     Given a dataframe containing only rows that have single-point
@@ -89,7 +88,6 @@ def split_coords_single_points(points):
     return points
 
 
-
 def process_chunk_v2(chunk, df,counter,mapping):
     chunk["timestamp"] = chunk["timestamp"].astype("uint32")
     chunk["pixel_color"] = chunk["pixel_color"].astype("uint8")
@@ -106,7 +104,46 @@ def process_chunk_v2(chunk, df,counter,mapping):
 
     chunk["user_id"] = chunk["user_id"].map(mapping)
     chunk["user_id"] = chunk["user_id"].astype("uint32")
+    chunk.sort_values("timestamp", inplace=True, ignore_index=True)                
 
-    df = pd.concat((df, chunk), ignore_index=True)
 
-    return df,counter,mapping
+    return chunk,counter,mapping
+
+
+CHUNK_SIZE = 1000000
+
+def trim_v2(infile_path, outfile_path):
+    """Trim the infile data and write it to outfile."""
+    df = pd.DataFrame(columns=["timestamp", "user_id","pixel_color", "x", "y"])
+    df["timestamp"] = df["timestamp"].astype("uint32")
+    df["pixel_color"] = df["pixel_color"].astype("uint8")
+    df["user_id"] = df["user_id"].astype("uint32")
+
+    df["x"] = df["x"].astype("uint16")
+    df["y"] = df["y"].astype("uint16")
+
+    mapping = {}
+    counter = 0
+    header = True # FONDAMENTALE
+    with pd.read_csv(
+        infile_path,
+        usecols=["timestamp", "user_id","pixel_color", "coordinate"],
+        converters={
+            "timestamp": parse_timestamp,
+            "pixel_color": parse_pixel_color,
+        },
+        chunksize=CHUNK_SIZE,
+        engine="c",
+        #compression="gzip",
+    ) as csv:
+        for chunk in tqdm(csv):
+            df, counter, mapping = process_chunk_v2(chunk, df,counter,mapping)
+            df.to_csv('more_trimmed.csv',header=header, mode='a', index = False)
+            header = False
+    return df
+
+
+
+infile_path = "2022_place_canvas_history.csv"
+outfile_path = "reddit_trimmed_v2.csv" 
+df_trim = trim_v2(infile_path, outfile_path)

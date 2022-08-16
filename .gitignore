@@ -4,7 +4,4 @@
 *.tar.gz
 output/
 data/
-kaggle/
 *.pptx
-*.txt
-*.pickle

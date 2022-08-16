@@ -1,6 +1,6 @@
-# place_network
+# Collaboration Analysis in Reddit Place 2022
 
-![plot](.assets/img/pic.png)
+![plot](./assets/img/pic.png)
 
 
 ## Description

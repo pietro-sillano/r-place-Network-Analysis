@@ -6,9 +6,8 @@
 ## Description
 
 An in-depth paragraph about your project and overview of use.
-<img src = "assets/plot/projections/arts_weighted.png" width ="150" /> <img src = "assets/plot/projections_communities/arts_weighted.png" width ="150" />
 
-<img src = "assets/plot/projections/arts_weighted_100_2nd.png" width ="150" /> <img src = "assets/plot/projections_communities/arts_weighted_100_2nd.png" width ="150" />
+<img src = "assets/plot/projections/arts_weighted.png" width ="150" /> <img src = "assets/plot/projections_communities/arts_weighted.png" width ="150" /> <img src = "assets/plot/projections/arts_weighted_100_2nd.png" width ="150" /> <img src = "assets/plot/projections_communities/arts_weighted_100_2nd.png" width ="150" />
 
 # Table Of Contents
 -  [In Details](#in-details)

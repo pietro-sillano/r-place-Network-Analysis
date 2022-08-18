@@ -17,22 +17,21 @@ An in-depth paragraph about your project and overview of use.
 
 
 # In Details
-
 ```
-├──  notebooks
-    |
-    ├─ 01_bipartite_network.ipynb create bipartite network edgelist
-    |
-    ├─ 02_A_Analysis.ipynb Analysis for the 25 artworks
-    |
-    ├─ 02_B_Analysis.ipynb Analysis for the 100 artworks
+├── notebooks
+|    |
+|    ├─ 00_statistics_figures.ipynb Some statistics and plots
+|    |
+|    ├─ 01_bipartite_network.ipynb create bipartite network edgelist
+|    |
+|    ├─ 02_A_Analysis.ipynb Analysis for the 25 artworks
+|    |
+|    ├─ 02_B_Analysis.ipynb Analysis for the 100 artworks
 │
 ├── scripts
     │
     └────  trimming.py : reduce size of the reddit dataset, changes datatypes, simplify user_id, separate coordinates, converts timestamp to integers in ms. From 20 Gb to 4 Gb.
 ```
-
-
 
 
 # Contributing

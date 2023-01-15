@@ -7,8 +7,8 @@ I took a network science course titled **"Complexity in social systems"** and de
 
 
 ## Description
-The initial idea of the project was if it's possible to group contributors in communities based on which artwork they have contributed to.
-It turns out to be not an easy task due to the huge number of users and their activity. To give an idea:
+The initial question of the project was if it's possible to group contributors in communities based on which artwork they have contributed to.
+It turns out to be not an easy task due to the **huge** number of users and their activity. To give an idea:
 - 160 million pixel modified
 - 10 million unique users
 - almost 10k different artworks
@@ -20,22 +20,14 @@ Then I had to make some simplifying assumptions. Unfortunately it would be diffi
 
 That's the **network representation** for 25 (and 100) artworks respectively. Each node is an artwork and nodes linked together share contributing users. The width of the link represent the number of shared users.
 
-The figures with coloured nodes are the network representation after the community detection algorithm (Newman modularity algorithm). Communities are different artworks that shared same users. This is not only a signal for *collaboration* but for *territory fight* too.
+The figures with coloured nodes are the network representation after the community detection algorithm (Newman modularity algorithm). Communities are different artworks that shared same users. This could be a signal for **collaboration** and for **competition** too.
 
-<!--
-For the full story go to my [Blog](https://pietro-sillano.github.io/projects/0_PLACE/)
--->
+# Future developments
+- Analyze the collaboration / competition relationships
 
-<!--
-# Table Of Contents
--  [In Details](#in-details)
--  [Contributing](#contributing)
--  [Acknowledgments](#acknowledgments)
--->
+- Consider the dynamics and evolution of the canvas over time
 
-
-<!-- # In Details -->
-<!--
+# In Details
 ```
 ├── notebooks
 |    |
@@ -52,7 +44,7 @@ For the full story go to my [Blog](https://pietro-sillano.github.io/projects/0_P
      └────  trimming.py : reduce size of the reddit dataset, changes datatypes,
     simplify user_id, separate coordinates, converts timestamp to integers in ms. From 20 Gb to 4 Gb.
 ```
--->
+
 
 
 # Contributing

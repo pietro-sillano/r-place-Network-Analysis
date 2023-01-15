@@ -13,7 +13,7 @@ It turns out to be not an easy task due to the **huge** number of users and thei
 - 10 million unique users
 - almost 10k different artworks
 
-Then I had to make some simplifying assumptions. Unfortunately it would be difficult to explain here every steps, but [Here](https://github.com/pietro-sillano/r-place-Network-Analysis/blob/main/docs/Reddit_place_ENG.pdf) you can find the presentation slides with the main steps.
+Then I had to make some simplifying assumptions. Unfortunately it would be difficult to explain here every steps, but [here](https://github.com/pietro-sillano/r-place-Network-Analysis/blob/main/docs/Reddit_place_ENG.pdf) you can find the presentation slides with the main steps.
 
 # Results
 <img src = "assets/plot/projections/arts_weighted.png" width ="170" /> <img src = "assets/plot/projections_communities/arts_weighted.png" width ="170" /> <img src = "assets/plot/projections/arts_weighted_100_2nd.png" width ="170" /> <img src = "assets/plot/projections_communities/arts_weighted_100_2nd.png" width ="170" />

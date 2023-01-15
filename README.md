@@ -1,12 +1,18 @@
 # Network of collaborations in r/Place 2022
+I thought that it would have been really cool to study and try to visualize the interaction between contributors of Reddit Place 2022 event. If you don't know what it is: [r/place](https://www.reddit.com/r/place/) or watch the[timelapse](https://www.youtube.com/watch?v=K5O3UgLG2Jw).
+
+I took a network science course titled "Complexity in social systems" and decided to bring this work as final project and it was really appreciated (or maybe I just have been lucky to have the professor nerdy enough to appreciate it).
 
 ![plot](assets/img/pic.png)
 
 
 ## Description
-I thought that it would have been really cool to study and try to visualize the interaction between contributors of Reddit Place 2022 event. If you don't know what it is: [r/place](https://www.reddit.com/r/place/) or [timelapse](https://www.youtube.com/watch?v=K5O3UgLG2Jw).
-
-I took a network science course titled "Complexity in social systems" and decided to bring this work as final project and it was really appreciated (or maybe I just have been lucky to have the professor nerdy enough to appreciate it).
+The initial idea of the project was if it's possible to group contributors in communities based on which artwork they have contributed to.
+It turns out to be not so easy due to the huge number of users and their activity. To give an idea:
+- 160 million pixel modified
+- 10 million unique users
+- almost 10k different artworks
+Then I had to make some simplifying assumptions. Unfortunately it would be difficult to explain here every steps, but [Here](https://github.com/pietro-sillano/r-place-Network-Analysis/blob/main/docs/Reddit_place_ENG.pdf) you can find a presentation with the main details and results.
 
 
 <img src = "assets/plot/projections/arts_weighted.png" width ="170" /> <img src = "assets/plot/projections_communities/arts_weighted.png" width ="170" /> <img src = "assets/plot/projections/arts_weighted_100_2nd.png" width ="170" /> <img src = "assets/plot/projections_communities/arts_weighted_100_2nd.png" width ="170" />
@@ -23,7 +29,7 @@ For the full story go to my [Blog](https://pietro-sillano.github.io/projects/0_P
 -->
 
 
-# In Details
+<!-- # In Details -->
 <!--
 ```
 ├── notebooks

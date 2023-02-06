@@ -2,6 +2,6 @@
 *.zip
 .ipynb_checkpoints/
 *.tar.gz
-output/
-data/
+# output/
+# data/
 *.pptx

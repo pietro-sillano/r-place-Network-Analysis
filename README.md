@@ -1,7 +1,7 @@
 # Network of collaborations in r/Place 2022
 I thought that it would have been cool to study and try to visualize the interaction between contributors of the Reddit Place 2022 event. If you don't know what it is: [r/place](https://www.reddit.com/r/place/) or watch the [timelapse](https://www.youtube.com/watch?v=K5O3UgLG2Jw).
 
-I took a network science course titled **"Complexity in social systems"** and decided to bring this work as final project and it was really appreciated (or maybe I just have been lucky to have the professor nerdy enough to appreciate it).
+I took a network science course titled **[Complexity in social systems](https://fisica-sc.campusnet.unito.it/do/corsi.pl/Show?_id=4ef1)** and decided to bring this work as final project and it was really appreciated (or maybe I just have been lucky to have the professor nerdy enough to appreciate it).
 
 ![plot](assets/img/pic.png)
 
@@ -31,13 +31,13 @@ The figures with coloured nodes are the network representation after the communi
 ```
 ├── notebooks
      |
-     ├─ 00_statistics_figures.ipynb Some statistics and plots
+     ├─ 00_statistics_figures.ipynb Some statistics and plots of the dataset
      |
-     ├─ 01_bipartite_network.ipynb create bipartite network edge list
+     ├─ 01_bipartite_network.ipynb create bipartite network of contributing users and artworks
      |
-     ├─ 02_A_Analysis.ipynb Analysis for the 25 artworks
+     ├─ 02_A_Analysis.ipynb Analysis for the 25 artworks selection
      |
-     ├─ 02_B_Analysis.ipynb Analysis for the 100 artworks
+     ├─ 02_B_Analysis.ipynb Analysis for the 100 artworks selection
 
 ├── scripts
      │

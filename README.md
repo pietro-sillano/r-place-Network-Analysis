@@ -22,30 +22,63 @@ That's the **network representation** for 25 (and 100) artworks respectively. Ea
 
 The figures with coloured nodes are the network representation after the community detection algorithm (Newman modularity algorithm). Communities are different artworks that shared same users. This could be a signal for **collaboration** and **competition** too.
 
+> **Note:** the figures above were made with the first version of the pipeline, which had
+> the artwork outlines transposed (x and y swapped) and counted pixels of nested artworks
+> twice. The code has been fixed (see below); the figures will be updated once the
+> pipeline is rerun on the full dataset.
+
 # Future developments
 - Analyze the collaboration / competition relationships
-
 - Consider the dynamics and evolution of the canvas over time
 
-# In Details
+# How to run
+```bash
+python3 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+scripts/run_pipeline.sh      # download (~12 GB) -> trim -> statistics -> networks
+pytest                       # tests on synthetic data, no download needed
 ```
-├── notebooks
-     |
-     ├─ 00_statistics_figures.ipynb Some statistics and plots of the dataset
-     |
-     ├─ 01_bipartite_network.ipynb create bipartite network of contributing users and artworks
-     |
-     ├─ 02_A_Analysis.ipynb Analysis for the 25 artworks selection
-     |
-     ├─ 02_B_Analysis.ipynb Analysis for the 100 artworks selection
+Every step can also be run on its own from the repository root, e.g.
+`python -m rplace.bipartite random100` then `python -m rplace.network random100 --min-pixels 3`.
 
-├── scripts
-     │
-     └────  trimming.py: reduce size of the Reddit dataset, changes datatypes,
-    simplify user_id, separates coordinates, converts timestamp to integers in ms. From 20 Gb to 4 Gb.
+# Structure
+```
+├── rplace/
+│   ├── config.py      paths, analysis window, constants
+│   ├── trim.py        raw csv (20 GB) -> data/reddit_trimmed.parquet: minutes since the first pixel (UTC),
+│   │                  integer user ids, colour index, x/y; admin actions removed
+│   ├── atlas.py       artwork outlines from data/atlas.json (the version valid in the analysis window)
+│   ├── stats.py       dataset statistics and figures (pixels per user, heatmap, activity, areas)
+│   ├── bipartite.py   artwork-user network; each pixel belongs to the smallest artwork containing it
+│   └── network.py     projections, null model, backbone, spatial control, Leiden communities, circos plots
+├── scripts/
+│   ├── download.sh    official r/place 2022 dataset
+│   └── run_pipeline.sh
+├── tests/             synthetic-data tests (orientation, time zones, planted communities, end to end)
+├── data/atlas.json    the r/place atlas (artwork outlines)
+├── output/            generated tables (edges, pairs, communities)
+├── assets/plot/       figures
+└── docs/              presentation slides (ENG / ITA)
 ```
 
+# Methods
+Two artworks are linked when they share contributors (users that placed at least
+`--min-pixels` pixels in both, during the window from the second canvas expansion to the
+final whiteout). Raw shared-user counts mostly reflect artwork size, so `rplace.network` also computes:
 
+- **normalised weights**: Jaccard, cosine and Newman's collaboration weight;
+- **statistically validated network** ([Tumminello et al. 2011](https://doi.org/10.1371/journal.pone.0017994)):
+  the overlap of each pair is tested against a hypergeometric null model (users spread at random),
+  keeping pairs with significantly more shared users (Benjamini-Hochberg FDR < q).
+  The edge weight is the lift, observed / expected shared users;
+- **disparity-filter backbone** ([Serrano et al. 2009](https://doi.org/10.1073/pnas.0808904106)) of the raw projection;
+- **spatial control**: adjacent artworks share users also because of border fights and misplaced
+  pixels, so adjacent pairs are flagged and the analysis is repeated without them;
+- **communities** with Leiden (modularity) on each projection, and with bipartite CPM directly
+  on the artwork-user network (exploratory: its resolution is a heuristic).
+
+The original random selections of 25 and 100 artworks were drawn without a seed; the
+`random25` / `random100` selections are seeded re-draws with the same criteria (area between 5,000 and 100,000 pixels).
 
 # Contributing
 Any kind of suggestion or contribution is welcomed.

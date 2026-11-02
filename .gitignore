@@ -1,7 +1,16 @@
+# data (see scripts/download.sh and rplace/trim.py)
 *.csv
+*.gzip
 *.zip
-.ipynb_checkpoints/
 *.tar.gz
-# output/
-# data/
+*.parquet
+*.npy
+*.pkl
+!data/atlas.json
+
+# python / jupyter
+.venv/
+__pycache__/
+.pytest_cache/
+
 *.pptx
